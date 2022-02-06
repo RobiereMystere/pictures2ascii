@@ -1,4 +1,6 @@
 from picture_manager import PictureManager
+from PIL import Image
+from PIL import ImageChops
 
 
 class PictureComparer:
