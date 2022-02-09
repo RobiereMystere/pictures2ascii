@@ -3,11 +3,14 @@ from picture_utils import PictureUtils
 
 class UnicodePicture:
 
-    def __init__(self, size, font, max_value_char):
+    def __init__(self, size, font, max_value_char, charset=None):
         self.unicode_pictures = {}
-
-        for i in range(31, max_value_char):
-            self.unicode_pictures[chr(i)] = {'image': PictureUtils(chr(i), size, size, font).image, 'mean': 0.0}
+        if charset is None:
+            for i in range(31, max_value_char):
+                self.unicode_pictures[chr(i)] = {'image': PictureUtils(chr(i), size, size, font).image, 'mean': 0.0}
+        else:
+            for char in charset:
+                self.unicode_pictures[char] = {'image': PictureUtils(char, size, size, font).image, 'mean': 0.0}
 
     def str_to_image(self, strings, size, font):
         final_image = None

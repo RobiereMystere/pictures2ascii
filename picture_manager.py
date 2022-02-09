@@ -15,6 +15,7 @@ class PictureManager:
         print(len(self.subdivisions))
 
     def picture_to_string(self, size, unicode_picture: UnicodePicture):
+        r = ""
         final_chars = [[""]]
         max_width = (self.image.width // size)
         characters = {}
@@ -32,12 +33,13 @@ class PictureManager:
             if min_char == '':
                 min_char = min(characters, key=characters.get)
 
-            print(min_char, end="")
+            r += min_char
             final_chars[str_index] += min_char
             if index % max_width == (max_width - 1):
                 final_chars.append([""])
                 str_index += 1
-                print()
+                r += "\n"
+        print(r)
         return final_chars
 
     def picture_to_string_old(self, size, font):
